@@ -12,11 +12,11 @@
     <things-ajax id="versions"
                  method="GET"
                  resource-url="{{versionsUrl}}"
-                 last-response="{{labelHistories}}"
+                 last-response="{{modelHistories}}"
                  response-root="items">
     </things-ajax>
 
-    <template is="dom-repeat" items="[[labelHistories]]">
+    <template is="dom-repeat" items="[[modelHistories]]">
       <things-item label="[[item]]"></things-item>
     </template>
 
@@ -30,15 +30,15 @@
         is: 'things-versions',
 
         properties: {
-          labelId: {
+          modelId: {
             notify: true
           },
-          labelHistories: {
+          modelHistories: {
             type: Array,
             notify: true
           },
           versionsUrl: {
-            computed: 'computeVersionsUrl(labelId)'
+            computed: 'computeVersionsUrl(modelId)'
           }
         },
 
@@ -46,12 +46,12 @@
           'get-versions': 'getVersions',
         },
 
-        computeVersionsUrl: function(labelId) {
-          return 'labels/versions/' + labelId + '.json';
+        computeVersionsUrl: function(modelId) {
+          return 'labels/versions/' + modelId + '.json';
         },
 
         getVersions: function() {
-          if (this.labelId) {
+          if (this.modelId) {
             this.$.versions.generateRequest();
           }
         }
