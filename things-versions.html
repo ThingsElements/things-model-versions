@@ -1,0 +1,62 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../things-ajax/things-ajax.html">
+
+<dom-module id="things-versions">
+  <template>
+    <style>
+    :host {
+      display: block;
+    }
+    </style>
+
+    <things-ajax id="versions"
+                 method="GET"
+                 resource-url="{{versionsUrl}}"
+                 last-response="{{labelHistories}}"
+                 response-root="items">
+    </things-ajax>
+
+    <template is="dom-repeat" items="[[labelHistories]]">
+      <things-item label="[[item]]"></things-item>
+    </template>
+
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'things-versions',
+
+        properties: {
+          labelId: {
+            notify: true
+          },
+          labelHistories: {
+            type: Array,
+            notify: true
+          },
+          versionsUrl: {
+            computed: 'computeVersionsUrl(labelId)'
+          }
+        },
+
+        listeners: {
+          'get-versions': 'getVersions',
+        },
+
+        computeVersionsUrl: function(labelId) {
+          return 'labels/versions/' + labelId + '.json';
+        },
+
+        getVersions: function() {
+          if (this.labelId) {
+            this.$.versions.generateRequest();
+          }
+        }
+
+      });
+    })();
+  </script>
+</dom-module>

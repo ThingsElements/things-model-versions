@@ -1,0 +1,17 @@
+{
+  "name": "things-model-versions",
+  "homepage": "https://github.com/ThingsElements/things-model-versions",
+  "authors": [
+    "c.s <chunseop@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
