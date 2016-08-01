@@ -39,6 +39,10 @@
           },
           versionsUrl: {
             computed: 'computeVersionsUrl(modelId)'
+          },
+          urlPrefix: {
+            type : String,
+            value : 'labels'
           }
         },
 
@@ -47,7 +51,7 @@
         },
 
         computeVersionsUrl: function(modelId) {
-          return 'labels/versions/' + modelId + '.json';
+          return this.urlPrefix + '/versions/' + modelId + '.json';
         },
 
         getVersions: function() {
