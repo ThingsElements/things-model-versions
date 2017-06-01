@@ -30,7 +30,7 @@
         is: 'things-model-versions',
 
         properties: {
-          modelId: {
+          modelName: {
             notify: true
           },
           modelHistories: {
@@ -38,7 +38,7 @@
             notify: true
           },
           versionsUrl: {
-            computed: 'computeVersionsUrl(modelId)'
+            computed: 'computeVersionsUrl(modelName)'
           },
           urlPrefix: {
             type : String,
@@ -50,12 +50,12 @@
           'get-versions': 'getVersions',
         },
 
-        computeVersionsUrl: function(modelId) {
-          return this.urlPrefix + '/versions/' + modelId + '.json';
+        computeVersionsUrl: function(modelName) {
+          return this.urlPrefix + '/versions/' + modelName + '.json';
         },
 
         getVersions: function() {
-          if (this.modelId) {
+          if (this.modelName) {
             this.$.versions.generateRequest();
           }
         }
